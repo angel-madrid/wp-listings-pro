@@ -1,11 +1,20 @@
 <?php
+/**
+ *
+ * This file contains the methods for custom post
+ * types in WPLPro
+ *
+ * @package wp-listings-pro
+ */
 
-if ( ! function_exists('listing_country_cpt') ) {
+// If there is not already a function.
+if ( ! function_exists( 'listing_country_cpt' ) ) {
+	/**
+	 * Register Custom Post Type.
+	 */
+	function listing_country_cpt() {
 
-// Register Custom Post Type
-function listing_country_cpt() {
-
-	$labels = array(
+		$labels = array(
 		'name'                  	=> _x( 'Countries', 'Post Type General Name', 'wp-listing-pro' ),
 		'singular_name'         	=> _x( 'Country', 'Post Type Singular Name', 'wp-listing-pro' ),
 		'menu_name'             	=> __( 'Countries', 'wp-listing-pro' ),
@@ -33,36 +42,37 @@ function listing_country_cpt() {
 		'Countries_list'            => __( 'Countries list', 'wp-listing-pro' ),
 		'Countries_list_navigation' => __( 'Countries list navigation', 'wp-listing-pro' ),
 		'filter_Countries_list'     => __( 'Filter Countries list', 'wp-listing-pro' ),
-	);
-	$args = array(
-		'label'                 => __( 'Country', 'wp-listing-pro' ),
-		'description'           => __( 'The country for listing or agents.', 'wp-listing-pro' ),
-		'labels'                => $labels,
-		'supports'              => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions', ),
-		'hierarchical'          => false,
-		'public'                => true,
-		'show_ui'               => true,
-		'show_in_menu'          => true,
-		'menu_position'         => 5,
-		'menu_icon'             => 'dashicons-location',
-		'show_in_admin_bar'     => true,
-		'show_in_nav_menus'     => true,
-		'can_export'            => true,
-		'has_archive'           => true,
-		'exclude_from_search'   => false,
-		'publicly_queryable'    => true,
-		'capability_type'       => 'page',
-		'show_in_rest'          => true,
-		'rest_base'             => 'country',
-	);
-	register_post_type( 'country', $args );
+			);
+			$args = array(
+			'label'                 => __( 'Country', 'wp-listing-pro' ),
+			'description'           => __( 'The country for listing or agents.', 'wp-listing-pro' ),
+			'labels'                => $labels,
+			'supports'              => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions' ),
+			'hierarchical'          => false,
+			'public'                => true,
+			'show_ui'               => true,
+			'show_in_menu'          => true,
+			'menu_position'         => 5,
+			'menu_icon'             => 'dashicons-location',
+			'show_in_admin_bar'     => true,
+			'show_in_nav_menus'     => true,
+			'can_export'            => true,
+			'has_archive'           => true,
+			'exclude_from_search'   => false,
+			'publicly_queryable'    => true,
+			'capability_type'       => 'page',
+			'show_in_rest'          => true,
+			'rest_base'             => 'country',
+			);
+			register_post_type( 'country', $args );
+
+	}
+	add_action( 'init', 'listing_country_cpt', 0 );
 
 }
-add_action( 'init', 'listing_country_cpt', 0 );
-
-}
-
-
+/**
+ * Import countries
+ */
 function import_reso_countries() {
 
 	$lookups = new ResoLookupFieldValues();
@@ -82,8 +92,8 @@ function import_reso_countries() {
 
 	}
 
-
 }
-// add_action( 'wp_head', 'import_reso_countries' );
 
-
+/*
+ * add_action( 'wp_head', 'import_reso_countries' );.
+ */

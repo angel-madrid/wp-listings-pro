@@ -57,7 +57,7 @@ class WPLPROAgents {
 
 		$this->options = get_option( 'WPLPROAgents_settings' );
 
-		$this->employee_details = apply_filters( 'WPLPROAgents_employee_details', array(
+		$this->employee_details = apply_filters( 'wplproagents_employee_details', array(
 			'col1' => array(
 				__( 'First Name:', 'wp-listings-pro' ) 		=> '_employee_first_name',
 				__( 'Last Name:', 'wp-listings-pro' ) 		=> '_employee_last_name',
@@ -78,7 +78,7 @@ class WPLPROAgents {
 			),
 		) );
 
-		$this->employee_social = apply_filters( 'WPLPROAgents_employee_social', array(
+		$this->employee_social = apply_filters( 'wplproagents_employee_social', array(
 				__( 'Facebook URL:', 'wp-listings-pro' ) 	=> '_employee_facebook',
 				__( 'Twitter URL:', 'wp-listings-pro' )		=> '_employee_twitter',
 				__( 'LinkedIn URL:', 'wp-listings-pro' )		=> '_employee_linkedin',
@@ -106,7 +106,7 @@ class WPLPROAgents {
 	 */
 	function create_post_type() {
 
-		$args = apply_filters( 'WPLPROAgents_post_type_args',
+		$args = apply_filters( 'wplproagents_post_type_args',
 			array(
 				'labels' => array(
 					'name'					=> __( 'Employees', 'wp-listings-pro' ),
@@ -257,10 +257,10 @@ class WPLPROAgents {
 		// So because of the way that esc_attr works, quotation marks will break it. OK then.
 		$image_size = 'style=min-width:150px;min-height:150px;width:150px;height:150px';
 
-		apply_filters( 'WPLPROAgents_admin_employee_details', $admin_details = $this->employee_details['col1'] );
+		apply_filters( 'wplproagents_admin_employee_details', $admin_details = $this->employee_details['col1'] );
 
 		if ( isset( $_GET['mode'] ) && trim( $_GET['mode'] ) === 'excerpt' ) {
-			apply_filters( 'WPLPROAgents_admin_extended_details', $admin_details = $this->employee_details['col1'] + $this->employee_details['col2'] );
+			apply_filters( 'wplproagents_admin_extended_details', $admin_details = $this->employee_details['col1'] + $this->employee_details['col2'] );
 		}
 
 		$image = wp_get_attachment_image_src( get_post_thumbnail_id(), 'thumbnail' );

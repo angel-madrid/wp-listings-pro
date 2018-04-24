@@ -636,7 +636,7 @@ function wp_listings_idx_listing_setting_page() {
 			// add_settings_error( 'wp_listings_idx_listing_settings_group', 'idx_listing_update', 'You must update to <a href="' . admin_url( 'update-core.php' ) . '">IMPress for IDX Broker</a> version 2.0.0 or higher to import listings.', 'error' );
 			// settings_errors( 'wp_listings_idx_listing_settings_group' );
 			// return;
-			// }
+			// }.
 			$_idx_api = new WPLPRO_Idx_Api();
 			$properties = $_idx_api->client_properties( 'featured' );
 			if ( is_wp_error( $properties ) ) {
